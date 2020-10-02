@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-boost';
+import { API_URL } from "@env"
 
 const createApolloClient = (authStorage) => {//luodaan palvelimen kanssa kommunikoiva client, 
 //jonka pyyntöihin lisätään token: token saadaan parametrina tulevalta authStoragelta
@@ -21,7 +22,7 @@ const createApolloClient = (authStorage) => {//luodaan palvelimen kanssa kommuni
         console.log(e);
       }
     },
-    uri: 'http://192.168.0.2:5000/graphql'
+    uri: API_URL
   });
 };
 

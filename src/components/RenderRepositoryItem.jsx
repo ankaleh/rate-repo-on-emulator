@@ -6,14 +6,14 @@ import { GET_REPOSITORY } from '../graphql/queries';
 import { DELETE_REVIEW } from '../graphql/mutations';
 import Text from './Text';
 import { FlatList, View, TouchableWithoutFeedback, Alert } from 'react-native';
-//import { format } from 'date-fns';
+import { format } from 'date-fns';
 import { styles } from './RepositoryItem';
 import { useHistory } from 'react-router-native';
 
 export const ReviewItem = ({review, myReview, refetch}) => {
     const [deleteReview /* , result */ ] = useMutation(DELETE_REVIEW);
     const history = useHistory();
-    //const formattedDate = format(new Date(review.node.createdAt), 'dd.MM.yyyy');
+    const formattedDate = format(new Date(review.node.createdAt), 'dd.MM.yyyy');
     
     const deleteItem = async () => {
         Alert.alert(
@@ -51,7 +51,7 @@ export const ReviewItem = ({review, myReview, refetch}) => {
                 ?<Text fontWeight="bold">{review.node.repository.fullName}</Text>
                 :<Text fontWeight="bold">{review.node.user.username}</Text>}
                 
-                <Text>{review.node.createdAt}</Text>
+                <Text>{formattedDate}</Text>
             
                 <View style={styles.flexText}>
                     <Text>{review.node.text}</Text>
